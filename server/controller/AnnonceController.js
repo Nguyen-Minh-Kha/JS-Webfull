@@ -84,6 +84,7 @@ exports.Destroy = async (req, res) => {
 exports.getAnnonceUser = async (req, res) => {
   try {
     const annonces = await Annonce.find();
+    annonces = annonces.filter((annonce) => annonce.user == req.payload.user);
     res.json(annonces);
   } catch (error) {
     res.json({ error: error.message });
