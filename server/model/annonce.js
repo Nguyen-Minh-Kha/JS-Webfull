@@ -13,6 +13,11 @@ const annonceSchema = mongoose.Schema(
     },
     photoProduit: { type: String, required: true },
     qteDispo: { type: Number, default: 1 },
+    idClient: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   { timestamps: true }
 );

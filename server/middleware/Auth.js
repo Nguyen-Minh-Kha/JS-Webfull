@@ -7,7 +7,10 @@ const auth = (req, res, next) => {
     jwt.verify(token, "RANDOM_TOKEN_SECRET", function (err, payload) {
       if (err) {
         res.status(401).json({ message: "Unauthorized" });
-      } else next();
+      } else {
+        req.payload = payload;
+        next();
+      }
     });
   } catch (error) {
     res.status(401).json({ message: "erreur lors de l'authentification" });
