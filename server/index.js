@@ -1,6 +1,7 @@
 let express = require("express");
 const { default: mongoose } = require("mongoose");
 let userRouter = require("./route/UserRouter");
+let annonceRouter = require("./route/AnnonceRouter");
 let app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -20,6 +21,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use("/api/user", userRouter);
+app.use("/api/", annonceRouter);
 
 const PORT = 5000;
 app.listen(PORT, () => {
