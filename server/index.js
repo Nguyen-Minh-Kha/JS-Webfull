@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 let express = require("express");
 const { default: mongoose } = require("mongoose");
 let userRouter = require("./route/UserRouter");
@@ -6,8 +8,7 @@ let app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-let MONGO_URI =
-  "mongodb+srv://minhkha:minhkha@js-webfull.hi7wcdp.mongodb.net/?retryWrites=true&w=majority";
+let MONGO_URI = process.env.MONGO_URI;
 
 let obj = {
   useNewUrlParser: true,
@@ -23,7 +24,7 @@ mongoose
 app.use("/api/user", userRouter);
 app.use("/api/", annonceRouter);
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
 });

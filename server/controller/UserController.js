@@ -21,7 +21,7 @@ exports.login = async (req, res) => {
       if (isMatch) {
         res.status(200).json({
           idClient: user._id,
-          token: jwt.sign({ idClient: user._id }, "RANDOM_TOKEN_SECRET", {
+          token: jwt.sign({ idClient: user._id }, process.env.PRIVATE_KEY, {
             expiresIn: "1h",
           }),
         });
