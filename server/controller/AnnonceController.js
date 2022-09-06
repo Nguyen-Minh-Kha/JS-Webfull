@@ -11,7 +11,7 @@ exports.Index = async (req, res) => {
 
 exports.Create = async (req, res) => {
   try {
-    req.body.idClient = req.payload.id_utilisateur;
+    req.body.idClient = req.payload.idClient;
     let annonce = await Annonce.create(req.body);
     res.status(201).json(annonce);
   } catch (error) {
@@ -39,7 +39,7 @@ exports.Update = async (req, res) => {
     let { nomProduit, prix, description, photoProduit, qteDispo } = req.body;
     let annonce = await Annonce.findById(id);
     if (annonce) {
-      if (annonce.user == req.payload.user) {
+      if (annonce.idClient == req.payload.idClient) {
         annonce.nomProduit = nomProduit;
         annonce.prix = prix;
         annonce.description = description;
@@ -65,7 +65,7 @@ exports.Destroy = async (req, res) => {
     let { id } = req.params;
     let annonce = await Annonce.findById(id);
     if (annonce) {
-      if (annonce.user == req.payload.user) {
+      if (annonce.idClient == req.payload.idClient) {
         await annonce.delete();
         res.json(annonce);
       } else {
@@ -83,10 +83,12 @@ exports.Destroy = async (req, res) => {
 
 exports.getAnnonceUser = async (req, res) => {
   try {
-    const annonces = await Annonce.find();
-    annonces = annonces.filter((annonce) => annonce.user == req.payload.user);
+    const annonces = await Annonce.find({
+      idClient: req.payload.idClient,
+    });
     res.json(annonces);
   } catch (error) {
+    console.log(error);
     res.json({ error: error.message });
   }
 };

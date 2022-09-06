@@ -20,8 +20,8 @@ exports.login = async (req, res) => {
       let isMatch = await bcrypt.compare(req.body.password, user.password);
       if (isMatch) {
         res.status(200).json({
-          id_utilisateur: user._id,
-          token: jwt.sign({ id_utilisateur: user._id }, "RANDOM_TOKEN_SECRET", {
+          idClient: user._id,
+          token: jwt.sign({ idClient: user._id }, "RANDOM_TOKEN_SECRET", {
             expiresIn: "1h",
           }),
         });
