@@ -13,16 +13,6 @@ exports.signup = async (req, res) => {
   }
 };
 
-// add auth middleware
-exports.auth = (req, res, next) => {
-  let token = req.headers.authorization.replace("Bearer ", "");
-  jwt.verify(token, "RANDOM_TOKEN_SECRET", function (err, payload) {
-    if (err) {
-      res.status(401).json({ message: "Unauthorized" });
-    } else next();
-  });
-};
-
 exports.login = async (req, res) => {
   try {
     let user = await User.findOne({ email: req.body.email });
