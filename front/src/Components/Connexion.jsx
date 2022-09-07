@@ -7,6 +7,7 @@ export default function Connexion() {
   const submit = (e) => {
     e.preventDefault();
     let user = { email, password };
+    console.log(user);
   };
   return (
     <>
