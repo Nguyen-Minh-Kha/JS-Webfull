@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import axios from "axios";
+import UserContext from "../Contexts/UserContext";
+
 export default function Connexion() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [token, setToken] = useContext(UserContext);
 
   const submit = (e) => {
     e.preventDefault();
@@ -13,6 +17,8 @@ export default function Connexion() {
       .post("http://localhost:5000/api/user/login", user)
       .then((response) => {
         console.log(response);
+        localStorage.setItem("token", response.data.token);
+        setToken(response.data.token);
       })
       .catch((e) => {
         console.log(e);
