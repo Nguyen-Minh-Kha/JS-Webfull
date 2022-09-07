@@ -7,7 +7,7 @@ export default function Connexion() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [token, setToken] = useContext(UserContext);
+  const { token, setToken } = useContext(UserContext);
 
   const submit = (e) => {
     e.preventDefault();
