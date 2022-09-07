@@ -4,9 +4,12 @@ let express = require("express");
 const { default: mongoose } = require("mongoose");
 let userRouter = require("./route/UserRouter");
 let annonceRouter = require("./route/AnnonceRouter");
+const cors = require("cors");
+
 let app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 let MONGO_URI = process.env.MONGO_URI;
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 
 export default function Inscription() {
   const [nom, setNom] = useState("");
@@ -11,6 +12,14 @@ export default function Inscription() {
     e.preventDefault();
     let user = { nom, prenom, email, password };
     console.log(user);
+    axios
+      .post("http://localhost:5000/api/user/signup", user)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
@@ -19,14 +28,14 @@ export default function Inscription() {
       <form onSubmit={submit}>
         <input
           type="text"
-          placeholder="Jean"
+          placeholder="nom"
           value={nom}
           onChange={(event) => setNom(event.target.value)}
         />
         <br />
         <input
           type="text"
-          placeholder="Paul"
+          placeholder="prenom"
           value={prenom}
           onChange={(event) => setPrenom(event.target.value)}
         />
