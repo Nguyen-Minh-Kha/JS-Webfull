@@ -1,12 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Inscription() {
   const [nom, setNom] = useState("");
   const [prenom, setPrenom] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const submit = (e) => {
     e.preventDefault();
@@ -16,6 +19,7 @@ export default function Inscription() {
       .post("http://localhost:5000/api/user/signup", user)
       .then((response) => {
         console.log(response);
+        navigate("/connexion");
       })
       .catch((e) => {
         console.log(e);
