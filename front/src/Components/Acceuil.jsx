@@ -23,6 +23,7 @@ export default function Acceuil() {
       {annonce.map((data) => {
         return (
           <AnnonceContainer
+            id={data._id}
             nomProduit={data.nomProduit}
             prix={data.prix}
             /* description={data.description}
