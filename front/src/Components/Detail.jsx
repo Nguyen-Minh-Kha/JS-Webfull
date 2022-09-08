@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function Detail() {
   const { id } = useParams();
-  const [annonce, setAnnonce] = useState();
+  const [annonce, setAnnonce] = useState({});
 
   console.log(id);
 
