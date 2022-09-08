@@ -8,16 +8,16 @@ export default function Connexion() {
   const [password, setPassword] = useState("");
 
   const { token, setToken } = useContext(UserContext);
-  console.log(token);
+  /* console.log(token); */
 
   const submit = (e) => {
     e.preventDefault();
     let user = { email, password };
-    console.log(user);
+    /* console.log(user); */
     axios
       .post("/api/user/login", user)
       .then((response) => {
-        console.log(response);
+        /* console.log(response); */
         localStorage.setItem("token", response.data.token);
         setToken(response.data.token);
       })

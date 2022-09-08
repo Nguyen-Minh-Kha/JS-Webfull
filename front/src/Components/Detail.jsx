@@ -8,13 +8,13 @@ export default function Detail() {
   const { id } = useParams();
   const [annonce, setAnnonce] = useState({});
 
-  console.log(id);
+  /* console.log(id); */
 
   useEffect(() => {
     axios
       .get(`/api/annonce/${id}`)
       .then((res) => {
-        console.log(res.data);
+        /* console.log(res.data); */
         setAnnonce(res.data);
       })
       .catch((err) => {

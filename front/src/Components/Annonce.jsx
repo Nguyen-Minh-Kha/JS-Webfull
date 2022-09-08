@@ -19,7 +19,7 @@ export default function Annonce() {
   const submit = (e) => {
     e.preventDefault();
     let annonce = { nomProduit, prix, description, photoProduit, qteDispo };
-    console.log(annonce);
+    /* console.log(annonce); */
     axios
       .post("/api/annonce", annonce, config)
       .then((response) => {

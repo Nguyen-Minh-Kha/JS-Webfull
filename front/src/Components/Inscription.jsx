@@ -14,11 +14,11 @@ export default function Inscription() {
   const submit = (e) => {
     e.preventDefault();
     let user = { nom, prenom, email, password };
-    console.log(user);
+    /* console.log(user); */
     axios
       .post("/api/user/signup", user)
       .then((response) => {
-        console.log(response);
+        /* console.log(response); */
         navigate("/connexion");
       })
       .catch((e) => {

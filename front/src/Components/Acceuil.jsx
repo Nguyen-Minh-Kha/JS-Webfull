@@ -10,7 +10,7 @@ export default function Acceuil() {
     axios
       .get("/api/annonce")
       .then((res) => {
-        console.log(res.data);
+        /* console.log(res.data); */
         setAnnonce(res.data);
       })
       .catch((err) => {
