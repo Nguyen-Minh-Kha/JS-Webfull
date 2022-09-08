@@ -1,26 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
-/* import axios from "axios"; */
+import axios from "axios";
+import UserContext from "../Contexts/UserContext";
 
 export default function Annonce() {
-  const [nom, setNom] = useState("");
+  const [nomProduit, setNom] = useState("");
   const [prix, setPrix] = useState("");
   const [description, setDescription] = useState("");
-  const [photo, setPhoto] = useState("");
+  const [photoProduit, setPhoto] = useState("");
   const [qteDispo, setQteDispo] = useState("");
+
+  const { token, setToken } = useContext(UserContext);
+
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
 
   const submit = (e) => {
     e.preventDefault();
-    let annonce = { nom, prix, description, photo, qteDispo };
+    let annonce = { nomProduit, prix, description, photoProduit, qteDispo };
     console.log(annonce);
-    /* axios
-      .post("http://localhost:5000/api/annonce", annonce)
+    axios
+      .post("http://localhost:5000/api/annonce", annonce, config)
       .then((response) => {
         console.log(response);
       })
       .catch((e) => {
         console.log(e);
-      }); */
+      });
   };
 
   return (
@@ -30,7 +37,7 @@ export default function Annonce() {
         <input
           type="text"
           placeholder="nom"
-          value={nom}
+          value={nomProduit}
           onChange={(event) => setNom(event.target.value)}
         />
         <br />
@@ -51,7 +58,7 @@ export default function Annonce() {
         <input
           type="text"
           placeholder="Lien vers votre photo"
-          value={photo}
+          value={photoProduit}
           onChange={(event) => setPhoto(event.target.value)}
         />
         <br />
