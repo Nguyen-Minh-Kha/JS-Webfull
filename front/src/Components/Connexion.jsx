@@ -15,7 +15,7 @@ export default function Connexion() {
     let user = { email, password };
     console.log(user);
     axios
-      .post("http://localhost:5000/api/user/login", user)
+      .post("/api/user/login", user)
       .then((response) => {
         console.log(response);
         localStorage.setItem("token", response.data.token);

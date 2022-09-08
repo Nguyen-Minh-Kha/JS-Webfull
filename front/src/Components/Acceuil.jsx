@@ -5,7 +5,7 @@ import axios from "axios";
 export default function Acceuil() {
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/annonce")
+      .get("/api/annonce")
       .then((res) => {
         console.log(res);
       })

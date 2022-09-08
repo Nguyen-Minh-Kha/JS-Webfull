@@ -21,7 +21,7 @@ export default function Annonce() {
     let annonce = { nomProduit, prix, description, photoProduit, qteDispo };
     console.log(annonce);
     axios
-      .post("http://localhost:5000/api/annonce", annonce, config)
+      .post("/api/annonce", annonce, config)
       .then((response) => {
         console.log(response);
       })

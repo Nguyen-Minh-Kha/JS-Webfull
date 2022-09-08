@@ -16,7 +16,7 @@ export default function Inscription() {
     let user = { nom, prenom, email, password };
     console.log(user);
     axios
-      .post("http://localhost:5000/api/user/signup", user)
+      .post("/api/user/signup", user)
       .then((response) => {
         console.log(response);
         navigate("/connexion");
