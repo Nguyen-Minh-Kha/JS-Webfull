@@ -7,7 +7,6 @@ import Navbar from "./Components/Navbar";
 import UserContext from "./Contexts/UserContext";
 import { useState } from "react";
 import Annonce from "./Components/Annonce";
-import Deconnexion from "./Components/Deconnexion";
 
 export default function App() {
   const initToken = localStorage.getItem("token")
@@ -24,7 +23,6 @@ export default function App() {
           <Route path="/connexion" element={<Connexion />} />
           <Route path="/inscription" element={<Inscription />} />
           <Route path="/annonce" element={<Annonce />} />
-          <Route path="/deconnexion" element={<Deconnexion />} />
         </Routes>
       </UserContext.Provider>
     </BrowserRouter>

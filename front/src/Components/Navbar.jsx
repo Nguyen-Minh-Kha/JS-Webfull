@@ -5,6 +5,11 @@ import UserContext from "../Contexts/UserContext";
 
 export default function Navbar() {
   const { token, setToken } = useContext(UserContext);
+
+  const deconnexion = () => {
+    localStorage.removeItem("token");
+    setToken("");
+  };
   return (
     <nav>
       <ul>
@@ -17,7 +22,9 @@ export default function Navbar() {
               <Link to="/annonce"> Annonce </Link>
             </li>
             <li>
-              <Link to="/Deconnexion"> Deconnexion </Link>
+              <Link to="/" onClick={deconnexion}>
+                Deconnexion
+              </Link>
             </li>
           </div>
         ) : (
