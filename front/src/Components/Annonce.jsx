@@ -54,8 +54,7 @@ export default function Annonce() {
       });
   };
 
-  /* const deleteAnnonce = (e) => {
-    e.preventDefault();
+  const deleteAnnonce = (id) => {
     axios
       .delete(`/api/annonce/${id}`, config)
       .then((response) => {
@@ -64,7 +63,7 @@ export default function Annonce() {
       .catch((e) => {
         console.log(e);
       });
-  }; */
+  };
 
   return (
     <>
@@ -123,20 +122,11 @@ export default function Annonce() {
               isUser={isUser}
             />
             <button
-              onClick={(e) => {
-                e.preventDefault();
-                axios
-                  .delete(`/api/annonce/${data._id}`, config)
-                  .then((response) => {
-                    console.log(response);
-                  })
-                  .catch((e) => {
-                    console.log(e);
-                  });
+              onClick={() => {
+                deleteAnnonce(data._id);
               }}
             >
-              {" "}
-              supprimmer{" "}
+              supprimmer
             </button>
           </div>
         );
