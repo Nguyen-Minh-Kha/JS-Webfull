@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { useState } from "react";
 import axios from "axios";
 import UserContext from "../Contexts/UserContext";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Connexion() {
   const [email, setEmail] = useState("");
@@ -9,6 +11,14 @@ export default function Connexion() {
 
   const { token, setToken } = useContext(UserContext);
   /* console.log(token); */
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, []);
 
   const submit = (e) => {
     e.preventDefault();

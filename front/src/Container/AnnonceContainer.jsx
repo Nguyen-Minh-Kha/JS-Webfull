@@ -11,6 +11,7 @@ export default function AnnonceContainer({
   idClient,
   createdAt,
   updatedAt,
+  isUser,
 }) {
   return (
     <>
@@ -24,9 +25,15 @@ export default function AnnonceContainer({
         {createdAt ? <li>{createdAt}</li> : ""}
         {updatedAt ? <li>{updatedAt}</li> : ""}
       </ul>
-      <button>
-        <Link to={`/annonce/${id}`}> acheter </Link>
-      </button>
+      {isUser ? (
+        <button>
+          <Link to={`/annonce/${id}`}> détail </Link>
+        </button>
+      ) : (
+        <button>
+          <Link to={`/annonce/${id}`}> acheter </Link>
+        </button>
+      )}
     </>
   );
 }

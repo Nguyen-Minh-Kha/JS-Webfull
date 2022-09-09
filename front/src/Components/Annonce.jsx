@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import { useState } from "react";
 import axios from "axios";
 import UserContext from "../Contexts/UserContext";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import AnnonceContainer from "../Container/AnnonceContainer";
 
 export default function Annonce() {
   const [nomProduit, setNom] = useState("");
@@ -12,9 +15,30 @@ export default function Annonce() {
 
   const { token, setToken } = useContext(UserContext);
 
+  const [annonceUser, setAnnonceUser] = useState([]);
+
+  const navigate = useNavigate();
+
+  const isUser = true;
+
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/connexion");
+    }
+    axios
+      .get("/api/annonce/getAnnonceUser", config)
+      .then((res) => {
+        console.log(res.data);
+        setAnnonceUser(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const submit = (e) => {
     e.preventDefault();
@@ -70,6 +94,23 @@ export default function Annonce() {
         />
         <button> Submit </button>
       </form>
+
+      {annonceUser.map((data) => {
+        return (
+          <AnnonceContainer
+            id={data._id}
+            nomProduit={data.nomProduit}
+            prix={data.prix}
+            description={data.description}
+            photoProduit={data.photoProduit}
+            qteDispo={data.qteDispo}
+            /* idClient={data.idClient} */
+            createdAt={data.createdAt}
+            updatedAt={data.updatedAt}
+            isUser={isUser}
+          />
+        );
+      })}
     </>
   );
 }
