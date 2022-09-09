@@ -96,7 +96,7 @@ export default function Annonce() {
   return (
     <>
       <h1>Créer une annonce</h1>
-      <form onSubmit={submit}>
+      <form>
         <input
           type="text"
           placeholder="nom"
@@ -131,7 +131,7 @@ export default function Annonce() {
           value={qteDispo}
           onChange={(event) => setQteDispo(event.target.value)}
         />
-        <button> Submit </button>
+        <button onClick={submit}> Submit </button>
         <button onClick={() => updateAnnonce(id)}>Update</button>
       </form>
 
