@@ -89,6 +89,11 @@ export default function Annonce() {
         /* console.log(response); */
         const tmp = annonceUser.filter((annonce) => annonce._id !== id);
         setAnnonceUser([response.data, ...tmp]);
+        setNom("");
+        setPrix("");
+        setDescription("");
+        setPhoto("");
+        setQteDispo("");
       })
       .catch((e) => {
         console.log(e);
