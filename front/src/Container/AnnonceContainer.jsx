@@ -26,9 +26,11 @@ export default function AnnonceContainer({
         {updatedAt ? <li>{updatedAt}</li> : ""}
       </ul>
       {isUser ? (
-        <button>
-          <Link to={`/annonce/${id}`}> détail </Link>
-        </button>
+        <>
+          <button>
+            <Link to={`/annonce/${id}`}> détail </Link>
+          </button>
+        </>
       ) : (
         <button>
           <Link to={`/annonce/${id}`}> acheter </Link>

@@ -54,6 +54,18 @@ export default function Annonce() {
       });
   };
 
+  /* const deleteAnnonce = (e) => {
+    e.preventDefault();
+    axios
+      .delete(`/api/annonce/${id}`, config)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }; */
+
   return (
     <>
       <h1>Créer une annonce</h1>
@@ -97,18 +109,36 @@ export default function Annonce() {
 
       {annonceUser.map((data) => {
         return (
-          <AnnonceContainer
-            id={data._id}
-            nomProduit={data.nomProduit}
-            prix={data.prix}
-            description={data.description}
-            photoProduit={data.photoProduit}
-            qteDispo={data.qteDispo}
-            /* idClient={data.idClient} */
-            createdAt={data.createdAt}
-            updatedAt={data.updatedAt}
-            isUser={isUser}
-          />
+          <div>
+            <AnnonceContainer
+              id={data._id}
+              nomProduit={data.nomProduit}
+              prix={data.prix}
+              description={data.description}
+              photoProduit={data.photoProduit}
+              qteDispo={data.qteDispo}
+              /* idClient={data.idClient} */
+              createdAt={data.createdAt}
+              updatedAt={data.updatedAt}
+              isUser={isUser}
+            />
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                axios
+                  .delete(`/api/annonce/${data._id}`, config)
+                  .then((response) => {
+                    console.log(response);
+                  })
+                  .catch((e) => {
+                    console.log(e);
+                  });
+              }}
+            >
+              {" "}
+              supprimmer{" "}
+            </button>
+          </div>
         );
       })}
     </>

@@ -30,6 +30,7 @@ export default function Connexion() {
         /* console.log(response); */
         localStorage.setItem("token", response.data.token);
         setToken(response.data.token);
+        navigate("/annonce");
       })
       .catch((e) => {
         console.log(e);
