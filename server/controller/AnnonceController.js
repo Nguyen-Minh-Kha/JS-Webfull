@@ -22,7 +22,7 @@ exports.Create = async (req, res) => {
 exports.Show = async (req, res) => {
   try {
     let { id } = req.params;
-    let annonce = await Annonce.findById(id);
+    let annonce = await Annonce.findById(id).populate("idClient");
     if (annonce) {
       res.json(annonce);
     } else {

@@ -13,6 +13,8 @@ export default function AnnonceContainer({
   updatedAt,
   isUser,
 }) {
+  const cDate = new Date(createdAt);
+  const uDate = new Date(updatedAt);
   return (
     <>
       <ul id={id}>
@@ -22,8 +24,20 @@ export default function AnnonceContainer({
         {photoProduit ? <li>{photoProduit}</li> : ""}
         {qteDispo ? <li>{qteDispo}</li> : ""}
         {idClient ? <li>{idClient}</li> : ""}
-        {createdAt ? <li>{createdAt}</li> : ""}
-        {updatedAt ? <li>{updatedAt}</li> : ""}
+        {createdAt ? (
+          <li>
+            {cDate.getDate()} / {cDate.getMonth() + 1} / {cDate.getFullYear()}
+          </li>
+        ) : (
+          ""
+        )}
+        {updatedAt ? (
+          <li>
+            {uDate.getDate()} / {uDate.getMonth() + 1} / {uDate.getFullYear()}
+          </li>
+        ) : (
+          ""
+        )}
       </ul>
       {isUser ? (
         <>

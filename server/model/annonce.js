@@ -15,7 +15,7 @@ const annonceSchema = mongoose.Schema(
     qteDispo: { type: Number, default: 1 },
     idClient: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "users",
       required: true,
     },
   },

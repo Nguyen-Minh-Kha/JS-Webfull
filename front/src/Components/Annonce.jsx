@@ -79,6 +79,7 @@ export default function Annonce() {
     setQteDispo(annonce.qteDispo);
     setDescription(annonce.description);
     setid(annonce._id);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const updateAnnonce = (id) => {

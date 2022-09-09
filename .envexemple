@@ -1,0 +1,3 @@
+PRIVATE_KEY="something"
+MONGO_URI="your mongo uri here"
+PORT=your port here
