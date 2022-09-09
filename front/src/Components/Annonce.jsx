@@ -32,7 +32,7 @@ export default function Annonce() {
     axios
       .get("/api/annonce/getAnnonceUser", config)
       .then((res) => {
-        console.log(res.data);
+        /* console.log(res.data); */
         setAnnonceUser(res.data);
       })
       .catch((err) => {
@@ -47,7 +47,12 @@ export default function Annonce() {
     axios
       .post("/api/annonce", annonce, config)
       .then((response) => {
-        console.log(response);
+        setAnnonceUser([response.data, ...annonceUser]);
+        setNom("");
+        setPrix("");
+        setDescription("");
+        setPhoto("");
+        setQteDispo("");
       })
       .catch((e) => {
         console.log(e);
@@ -58,7 +63,8 @@ export default function Annonce() {
     axios
       .delete(`/api/annonce/${id}`, config)
       .then((response) => {
-        console.log(response);
+        /* console.log(response); */
+        setAnnonceUser(annonceUser.filter((annonce) => annonce._id !== id));
       })
       .catch((e) => {
         console.log(e);
