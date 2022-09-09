@@ -12,6 +12,7 @@ export default function Annonce() {
   const [description, setDescription] = useState("");
   const [photoProduit, setPhoto] = useState("");
   const [qteDispo, setQteDispo] = useState("");
+  const [id, setid] = useState("");
 
   const { token, setToken } = useContext(UserContext);
 
@@ -71,6 +72,27 @@ export default function Annonce() {
       });
   };
 
+  const updateForm = (annonce) => {
+    setNom(annonce.nomProduit);
+    setPrix(annonce.prix);
+    setPhoto(annonce.photoProduit);
+    setQteDispo(annonce.qteDispo);
+    setDescription(annonce.description);
+    setid(annonce._id);
+  };
+
+  const updateAnnonce = (id) => {
+    let annonce = { nomProduit, prix, description, photoProduit, qteDispo };
+    axios
+      .put(`/api/annonce/${id}`, annonce, config)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   return (
     <>
       <h1>Créer une annonce</h1>
@@ -110,6 +132,7 @@ export default function Annonce() {
           onChange={(event) => setQteDispo(event.target.value)}
         />
         <button> Submit </button>
+        <button onClick={() => updateAnnonce(id)}>Update</button>
       </form>
 
       {annonceUser.map((data) => {
@@ -132,7 +155,14 @@ export default function Annonce() {
                 deleteAnnonce(data._id);
               }}
             >
-              supprimmer
+              Delete
+            </button>
+            <button
+              onClick={() => {
+                updateForm(data);
+              }}
+            >
+              Edit
             </button>
           </div>
         );
