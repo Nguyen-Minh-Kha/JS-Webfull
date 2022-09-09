@@ -86,7 +86,9 @@ export default function Annonce() {
     axios
       .put(`/api/annonce/${id}`, annonce, config)
       .then((response) => {
-        console.log(response);
+        /* console.log(response); */
+        const tmp = annonceUser.filter((annonce) => annonce._id !== id);
+        setAnnonceUser([response.data, ...tmp]);
       })
       .catch((e) => {
         console.log(e);
@@ -96,7 +98,7 @@ export default function Annonce() {
   return (
     <>
       <h1>Créer une annonce</h1>
-      <form>
+      <div>
         <input
           type="text"
           placeholder="nom"
@@ -133,7 +135,7 @@ export default function Annonce() {
         />
         <button onClick={submit}> Submit </button>
         <button onClick={() => updateAnnonce(id)}>Update</button>
-      </form>
+      </div>
 
       {annonceUser.map((data) => {
         return (
